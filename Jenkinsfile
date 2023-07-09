@@ -21,6 +21,17 @@ pipeline{
                   git branch: 'master-devops', credentialsId:'github', url:'https://github.com/nguepempoue/demo-web-v1.git'
                }
           }
+          stage('Build Application') {
+             steps {
+                 sh 'mvn clean package'
+               }
+           }
+
+           stage('Test') {
+                steps {
+                   sh 'mvn test'
+                }
+           }
 
        }
 }
