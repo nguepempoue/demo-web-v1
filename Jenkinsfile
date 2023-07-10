@@ -9,15 +9,6 @@ pipeline{
         maven "Maven3"
      }
 
-    environment {
-        APP_NAME = "demo-web-e2e-pipeline"
-        RELEASE = "1.0.0"
-        DOCKER_USER = "nguepempouedocker"
-        DOCKER_PASS = 'dockerhub'
-        IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
-        IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
-    }
-
     stages{
 
          stage('Clean workspace') {
