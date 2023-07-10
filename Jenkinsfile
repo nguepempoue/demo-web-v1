@@ -58,5 +58,11 @@ pipeline{
 
                 }
 
+            stage('Test') {
+                  steps{
+                      sh 'docker build -t demo-web .'
+                      sh 'docker run -p 8082:8080 demo-web'
+                   }
+              }
        }
 }
