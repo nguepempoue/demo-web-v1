@@ -43,12 +43,23 @@ pipeline{
            }
 
 
+           steps {
+                   script {
+                       docker.withRegistry('',DOCKER_PASS) {
+                            docker_image = docker.build "${IMAGE_NAME}"
+                        }
 
-            stage('Deploy App') {
-                  steps{
-                      sh 'docker build -t demo-web .'
-                      sh 'docker run -p 8082:8080 demo-web'
-                   }
-              }
+                        docker.withRegistry('',DOCKER_PASS) {
+                             docker_image.push("${IMAGE_TAG}")
+                             docker_image.push('latest')
+                             docker_image.run('docker run -p 8082:8080 ' + '${IMAGE_TAG}')
+                           }
+                        }
+                     }
+
+                }
+
+
+
        }
 }
