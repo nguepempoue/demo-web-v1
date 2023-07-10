@@ -54,7 +54,7 @@ pipeline{
                              docker_image.push('latest')
                              docker.run "-p 8082:8080 ${IMAGE_NAME}"
                            }
-                        }
+
                      }
 
                 }
