@@ -42,22 +42,23 @@ pipeline{
                 }
            }
 
-
-           steps {
+steps {
                    script {
                        docker.withRegistry('',DOCKER_PASS) {
                             docker_image = docker.build "${IMAGE_NAME}"
                         }
 
                         docker.withRegistry('',DOCKER_PASS) {
-                             docker_image.push("${IMAGE_TAG}")
-                             docker_image.push('latest')
-                             docker.run "-p 8082:8080 ${IMAGE_NAME}"
-                           }
-
+                                                     docker_image.push("${IMAGE_TAG}")
+                                                     docker_image.push('latest')
+                                                     docker.run "-p 8082:8080 ${IMAGE_NAME}"
+                                                   }
+                        }
                      }
 
                 }
+
+
 
 
 
